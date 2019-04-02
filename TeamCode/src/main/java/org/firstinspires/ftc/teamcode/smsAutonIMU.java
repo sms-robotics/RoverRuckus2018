@@ -356,6 +356,7 @@ if (tri_state == 1) {
                                 robot.collector.setTargetPosition(0);
                                 robot.collector.setPower(1.0f);
                             }
+                            servoCorrection();
                             sleep(500);
                             if (robot.teamID == "15555") robot.collector.setPower(0.0f);
                         }
@@ -1130,6 +1131,18 @@ idle();
         TFObjectDetector.Parameters tfodParameters = new TFObjectDetector.Parameters(tfodMonitorViewId);
         tfod = ClassFactory.getInstance().createTFObjectDetector(tfodParameters, vuforia);
         tfod.loadModelFromAsset(TFOD_MODEL_ASSET, LABEL_GOLD_MINERAL, LABEL_SILVER_MINERAL);
+    }
+    public void servoCorrection() {
+
+        // Update telemetry & Allow time for other processes to run
+        double imuError = getError(0);
+        double newPOS = (0.5-(imuError/180));
+        robot.servoMarker.setPosition(newPOS);
+        telemetry.addData("error", imuError);
+        telemetry.addData("sErVo", newPOS);
+        telemetry.update();
+        idle();
+
     }
 
 /*
