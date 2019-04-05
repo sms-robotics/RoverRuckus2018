@@ -36,6 +36,8 @@ public class smsAutonIMU extends LinearOpMode {
     private VuforiaLocalizer vuforia;
     private TFObjectDetector tfod;
 
+    private double currentAngle = 0;
+
 
     smsHardware robot = new smsHardware();   // Use a Pushbot's hardware
     smsJSON settings = new smsJSON();
@@ -356,7 +358,7 @@ if (tri_state == 1) {
                                 robot.collector.setTargetPosition(0);
                                 robot.collector.setPower(1.0f);
                             }
-                            servoCorrection();
+                            servoCorrection(servoPOS, currentAngle);
                             sleep(500);
                             if (robot.teamID == "15555") robot.collector.setPower(0.0f);
                         }
@@ -528,6 +530,9 @@ if (tri_state == 1) {
                         tfod.shutdown();
 
                     }
+                    v_state_current++;
+                    break;
+                default:
                     v_state_current++;
                     break;
             }
@@ -953,6 +958,7 @@ idle();
 
     }
 
+
     boolean onHeading(double leftspeed, double rightspeed, double angle, double PCoeff) {
         double error;
         double steer;
@@ -965,6 +971,7 @@ idle();
             steer = 0.0;
             leftspeed = 0.0;
             rightspeed = 0.0;
+            currentAngle = angle;
             onTarget = true;
         } else {
             steer = 1.0;
@@ -1132,11 +1139,11 @@ idle();
         tfod = ClassFactory.getInstance().createTFObjectDetector(tfodParameters, vuforia);
         tfod.loadModelFromAsset(TFOD_MODEL_ASSET, LABEL_GOLD_MINERAL, LABEL_SILVER_MINERAL);
     }
-    public void servoCorrection() {
+    public void servoCorrection(double servoPOS, double targetAngle) {
 
         // Update telemetry & Allow time for other processes to run
-        double imuError = getError(0);
-        double newPOS = (0.5-(imuError/180));
+        double imuError = getError(targetAngle);
+        double newPOS = (servoPOS-(imuError/180));
         robot.servoMarker.setPosition(newPOS);
         telemetry.addData("error", imuError);
         telemetry.addData("sErVo", newPOS);
