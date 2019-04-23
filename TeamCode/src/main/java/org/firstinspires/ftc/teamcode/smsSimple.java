@@ -32,7 +32,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.Range;
 
-@TeleOp(name="15555-simple-The-One-You-Should-Click-On-Because-It-Is-Totally-Not-Useless-get-stronger-metal", group="Pushbot")
+@TeleOp(name="15555-simple-CLICK_HERE_FOR_TESTING", group="Pushbot")
 public class smsSimple extends LinearOpMode {
 
     /* Declare OpMode members. */
@@ -55,7 +55,7 @@ public class smsSimple extends LinearOpMode {
 
         int minCollectorPosition = 0;
         int maxCollectorPosition = 1000;
-        float POWERRDCR = 0.3f;
+        final float POWER_REDUCER = 0.3f;
         int collectorCurrentPosition = robot.collector.getCurrentPosition();
         waitForStart();
 
@@ -75,8 +75,8 @@ public class smsSimple extends LinearOpMode {
                 robot.collector.setPower(-power);
                 telemetry.addData("Say", "The down D-pad is pressed");
             }*/
-            float DRIVE = gamepad2.left_stick_y * POWERRDCR;
-            robot.collector.setPower(Range.clip(DRIVE, -1, 1));
+            float drive = gamepad2.left_stick_y * POWER_REDUCER;
+            robot.collector.setPower(Range.clip(drive, -1, 1));
 
             /*if ((dpad_check_down == false && dpad_check_up == false) || (collectorCurrentPosition <= minCollectorPosition || collectorCurrentPosition >= maxCollectorPosition)) {
                 robot.collector.setPower(0);
