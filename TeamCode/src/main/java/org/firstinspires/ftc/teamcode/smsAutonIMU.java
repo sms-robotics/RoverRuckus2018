@@ -272,7 +272,7 @@ if (tri_state == 1) {
                 case 0:
                     break;
 
-                case 1: // Drive stright (in any of 4 directions) for a given amount of time
+                case 1: // Drive straight (in any of 4 directions) for a given amount of time
 
                     robot.frontRightDrive.setPower(leftArray[v_state_current] + rightArray[v_state_current]);
                     robot.frontLeftDrive.setPower(leftArray[v_state_current] - rightArray[v_state_current]);
@@ -307,7 +307,7 @@ if (tri_state == 1) {
                     }
                     v_state_current++;
                     break;
-                case 333: // Turn using the IMU
+                case 333: // Correct servo position
                     while (opModeIsActive()) {
                         // Update telemetry & Allow time for other processes to run
                         double imuError = getError(0);

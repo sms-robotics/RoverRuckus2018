@@ -262,12 +262,14 @@ tri_state = 1;
 
 if (tri_state == 1) {
 */
+            telemetry.addData("v_state_current: ", v_state_current);
+            telemetry.addData("v_state running: ", v_state[v_state_current]);
             switch (v_state[v_state_current]) {
 
                 case 0:
                     break;
 
-                case 1: // Drive stright (in any of 4 directions) for a given amount of time
+                case 1: // Drive straight (in any of 4 directions) for a given amount of time
 
                     robot.frontRightDrive.setPower(leftArray[v_state_current] + rightArray[v_state_current]);
                     robot.frontLeftDrive.setPower(leftArray[v_state_current] - rightArray[v_state_current]);
@@ -512,6 +514,9 @@ if (tri_state == 1) {
                         tfod.shutdown();
 
                     }
+                    v_state_current++;
+                    break;
+                default:
                     v_state_current++;
                     break;
             }
@@ -937,6 +942,7 @@ idle();
 
     }
 
+    // Not using rightspeed right now - only turning in place using leftspeed
     boolean onHeading(double leftspeed, double rightspeed, double angle, double PCoeff) {
         double error;
         double steer;
@@ -958,6 +964,9 @@ idle();
         }
 
         // Send desired speeds to motors.
+
+        // Currently turning in place, not using rightspeed.
+
         robot.frontRightDrive.setPower(-leftspeed);
         robot.frontLeftDrive.setPower(+leftspeed);
         robot.rearRightDrive.setPower(-leftspeed);
