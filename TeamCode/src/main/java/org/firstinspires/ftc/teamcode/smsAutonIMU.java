@@ -354,13 +354,13 @@ if (tri_state == 1) {
                         }
                         if (Math.abs(robot.sensorAxis.getPosition() - servoPOS) > 0.05) {
                             robot.sensorAxis.setPosition(servoPOS);
-                            if (robot.teamID == "15555") {
+                            if (/* robot.teamID == "15555" */ robot.teamID.equals("15555")) {
                                 robot.collector.setTargetPosition(0);
                                 robot.collector.setPower(1.0f);
                             }
                             servoCorrection(servoPOS, currentAngle);
                             sleep(500);
-                            if (robot.teamID == "15555") robot.collector.setPower(0.0f);
+                            if (/*robot.teamID == "15555"*/ robot.teamID.equals("15555")) robot.collector.setPower(0.0f);
                         }
 
                     }
