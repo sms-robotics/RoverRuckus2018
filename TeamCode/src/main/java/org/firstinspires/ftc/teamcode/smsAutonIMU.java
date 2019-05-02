@@ -358,7 +358,6 @@ if (tri_state == 1) {
                                 robot.collector.setTargetPosition(0);
                                 robot.collector.setPower(1.0f);
                             }
-                            servoCorrection(servoPOS, currentAngle);
                             sleep(500);
                             if (/*robot.teamID == "15555"*/ robot.teamID.equals("15555")) robot.collector.setPower(0.0f);
                         }
@@ -366,6 +365,7 @@ if (tri_state == 1) {
                     }
 
                     while (opModeIsActive() && !onToF(leftArray[v_state_current], rightArray[v_state_current], timeArray[v_state_current], P_TURN_COEFF)) {
+                        servoCorrection(servoPOS, currentAngle);
                         // Update telemetry & Allow time for other processes to run
                         telemetry.update();
                         idle();
@@ -1144,7 +1144,7 @@ idle();
         // Update telemetry & Allow time for other processes to run
         double imuError = getError(targetAngle);
         double newPOS = (servoPOS-(imuError/180));
-        robot.servoMarker.setPosition(newPOS);
+        robot.sensorAxis.setPosition(newPOS);
         telemetry.addData("error", imuError);
         telemetry.addData("sErVo", newPOS);
         telemetry.update();
