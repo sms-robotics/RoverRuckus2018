@@ -958,6 +958,16 @@ idle();
 
     }
 
+    /**
+     *
+     * Does tank turning
+     *
+     * @param leftspeed controls speed of turn
+     * @param rightspeed unused for now
+     * @param angle angle that you want to head toward (in degrees)
+     * @param PCoeff unused for now
+     * @return returns true when you are heading toward angle, false otherwise
+     */
 
     boolean onHeading(double leftspeed, double rightspeed, double angle, double PCoeff) {
         double error;
@@ -1046,7 +1056,7 @@ idle();
     /*
      * getError determines the error between the target angle and the robot's current heading
      *
-     * @param targetAngle Desired angle (relative to global reference established at last Gyro Reset).
+     * @param targetAngle Desired angle (in degrees relative to global reference established at last Gyro Reset).
      * @return error angle: Degrees in the range +/- 180. Centered on the robot's frame of reference
      * +ve error means the robot should turn LEFT (CCW) to reduce error.
      */
@@ -1139,6 +1149,9 @@ idle();
         tfod = ClassFactory.getInstance().createTFObjectDetector(tfodParameters, vuforia);
         tfod.loadModelFromAsset(TFOD_MODEL_ASSET, LABEL_GOLD_MINERAL, LABEL_SILVER_MINERAL);
     }
+
+
+
     public void servoCorrection(double servoPOS, double targetAngle) {
 
         // Update telemetry & Allow time for other processes to run
