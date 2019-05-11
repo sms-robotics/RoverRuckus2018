@@ -1,0 +1,21 @@
+{
+"v_state00":31,"timeArray00":0.3,"rightArray00":0.0,"leftArray00":2000,
+"v_state01":03,"timeArray01":0,"rightArray01":0.0,"leftArray01":-0.2,
+"v_state02":05,"timeArray02":120,"rightArray02":-0.1 ,"leftArray02":-0.1,
+"v_state03":05,"timeArray03":120,"rightArray03":-0.1,"leftArray03":0.1,
+"v_state04":02,"timeArray04":0.2,"rightArray04":500,"leftArray04":500,
+"v_state05":06,"timeArray05":500,"rightArray05":70,"leftArray05":100,
+"v_state06":05,"timeArray06":0,"rightArray06":-0.15,"leftArray06":-0.15,
+"v_state07":05,"timeArray07":0,"rightArray07":-0.15,"leftArray07":0.15,
+"v_state08":02,"timeArray08":0.3,"rightArray08":750,"leftArray08":-750,
+"v_state09":04,"timeArray09":0,"rightArray09":0.25,"leftArray09":0.25,
+"v_state10":05,"timeArray10":30,"rightArray10":0.0,"leftArray10":-0.3,
+"v_state11":04,"timeArray11":0,"rightArray11":0.0,"leftArray11":0.0,
+"v_state12":03,"timeArray12":235,"rightArray12":0.0,"leftArray12":0.2,
+"v_state13":05,"timeArray13":80,"rightArray13":0.0,"leftArray13":-0.3,
+"v_state14":04,"timeArray14":0,"rightArray14":1.0,"leftArray14":1.0,
+"v_state15":32,"timeArray15":2000,"rightArray15":0.4,"leftArray15":0.4,
+"v_state16":05,"timeArray16":120,"rightArray16":0.0,"leftArray16":0.4,
+"dummy":0
+}
+
