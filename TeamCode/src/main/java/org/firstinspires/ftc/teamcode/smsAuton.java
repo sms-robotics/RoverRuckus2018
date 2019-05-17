@@ -344,7 +344,6 @@ if (tri_state == 1) {
                             sleep(500);
                             if (robot.teamID == "15555") robot.collector.setPower(0.0f);
                         }
-
                     }
 
                     while (opModeIsActive() && !onToF(leftArray[v_state_current], rightArray[v_state_current], timeArray[v_state_current], P_TURN_COEFF)) {
@@ -474,7 +473,7 @@ if (tri_state == 1) {
                 break;
 
                 case 55:
-                    /** Activate Tensor Flow Object Detection. */
+                    /* Activate Tensor Flow Object Detection. */
                     if (tfod != null) {
                         tfod.activate();
                         List<Recognition> updatedRecognitions = tfod.getUpdatedRecognitions();

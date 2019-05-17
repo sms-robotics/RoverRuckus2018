@@ -58,6 +58,7 @@ public class smsSimple extends LinearOpMode {
         final float POWER_REDUCER = 0.3f;
         int collectorCurrentPosition = robot.collector.getCurrentPosition();
         waitForStart();
+        float DRIVE = 0;
 
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
@@ -75,8 +76,14 @@ public class smsSimple extends LinearOpMode {
                 robot.collector.setPower(-power);
                 telemetry.addData("Say", "The down D-pad is pressed");
             }*/
-            float drive = gamepad2.left_stick_y * POWER_REDUCER;
-            robot.collector.setPower(Range.clip(drive, -1, 1));
+            if ((gamepad2.right_stick_y > 0.3) && (DRIVE <= gamepad2.right_stick_y)) {
+                DRIVE += 0.1;
+            } else {
+                DRIVE = 0;
+            }
+
+            if (DRIVE > gamepad2.right_stick_y) { DRIVE = gamepad2.right_stick_y; }
+            robot.collector.setPower(Range.clip(DRIVE, -1, 1));
 
             /*if ((dpad_check_down == false && dpad_check_up == false) || (collectorCurrentPosition <= minCollectorPosition || collectorCurrentPosition >= maxCollectorPosition)) {
                 robot.collector.setPower(0);
@@ -94,5 +101,16 @@ public class smsSimple extends LinearOpMode {
             telemetry.addLine(String.format("The position of the collector motor is %d", collectorCurrentPosition));
             telemetry.update();
         }
+    }
+
+    public float ramp_ints(float PWRRDCR, float drive) {
+        if ((gamepad2.right_stick_y > 0.3) && (drive <= gamepad2.right_stick_y)) {
+            drive += 0.1;
+        } else {
+            drive = 0;
+        }
+
+        if (drive > gamepad2.right_stick_y) { drive = gamepad2.right_stick_y; }
+        return drive * PWRRDCR;
     }
 }
